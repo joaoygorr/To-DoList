@@ -22,4 +22,15 @@ public record TodoRecord(Long id,
                 todo.getDeadline()
         );
     }
+
+    public static Todo toEntity(TodoRecord todoRecord) {
+        return new Todo(
+                todoRecord.id,
+                todoRecord.title(),
+                todoRecord.description(),
+                todoRecord.status,
+                todoRecord.creationDate,
+                todoRecord.deadline
+        );
+    }
 }

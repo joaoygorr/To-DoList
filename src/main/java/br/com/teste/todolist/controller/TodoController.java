@@ -58,4 +58,12 @@ public class TodoController {
         Page<Todo> todosPage = this.todoService.getAllTodos(pageable);
         return ResponseEntity.ok(todosPage.map(TodoRecord::toDto));
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualiza um registro de Todo",
+            description = "Atualiza os dados de um registro de Todo existente com base no ID fornecido.")
+    public ResponseEntity<TodoRecord> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoRecord updatedTodoRecord) {
+        Todo updatedTodo = todoService.updateTodo(id, TodoRecord.toEntity(updatedTodoRecord));
+        return ResponseEntity.ok(TodoRecord.toDto(updatedTodo));
+    }
 }

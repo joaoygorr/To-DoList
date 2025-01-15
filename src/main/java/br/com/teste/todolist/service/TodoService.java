@@ -13,4 +13,6 @@ public interface TodoService {
     void deleteTodoById(Long id);
 
     Page<Todo> getAllTodos(Pageable pageable);
+
+    Todo updateTodo(Long id, Todo todo);
 }

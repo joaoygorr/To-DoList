@@ -2,12 +2,16 @@ package br.com.teste.todolist.service;
 
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.module.Todo;
+import br.com.teste.todolist.record.TodoRecord;
 import br.com.teste.todolist.repository.TodoRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -40,6 +44,19 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Page<Todo> getAllTodos(Pageable pageable) {
         return this.todoRepository.findAll(pageable);
+    }
+
+    @Override
+    public Todo updateTodo(Long id, Todo todo) {
+        Todo existingTodo = todoRepository.findById(id)
+                .orElseThrow(() -> new Exception404("Todo com ID " + id + " não encontrado."));
+
+        existingTodo.setTitle(todo.getTitle());
+        existingTodo.setDescription(todo.getDescription());
+        existingTodo.setCreationDate(LocalDate.now());
+        existingTodo.setDeadline(todo.getDeadline());
+
+        return todoRepository.save(existingTodo);
     }
 }
 
