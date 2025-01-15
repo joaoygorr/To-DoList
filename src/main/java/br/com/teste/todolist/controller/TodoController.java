@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,4 +52,10 @@ public class TodoController {
         return ResponseEntity.ok("Registro excluído com sucesso");
     }
 
+    @GetMapping
+    @Operation(summary = "Listar Todos os Todos", description = "Retorna uma lista de todos os registros de Todo.")
+    public ResponseEntity<Page<TodoRecord>> getAllTodos(Pageable pageable) {
+        Page<Todo> todosPage = this.todoService.getAllTodos(pageable);
+        return ResponseEntity.ok(todosPage.map(TodoRecord::toDto));
+    }
 }
