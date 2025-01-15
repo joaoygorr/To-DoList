@@ -2,10 +2,8 @@ package br.com.teste.todolist.service;
 
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.record.TodoRecord;
 import br.com.teste.todolist.repository.TodoRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +52,7 @@ public class TodoServiceImpl implements TodoService {
         existingTodo.setTitle(todo.getTitle());
         existingTodo.setDescription(todo.getDescription());
         existingTodo.setCreationDate(LocalDate.now());
+        existingTodo.setStatus(todo.getStatus());
         existingTodo.setDeadline(todo.getDeadline());
 
         return todoRepository.save(existingTodo);
