@@ -1,12 +1,9 @@
 package br.com.teste.todolist.module;
 
 import br.com.teste.todolist.module.enuns.Status;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "todos")
@@ -50,14 +47,8 @@ public class Todo {
         this.deadline = deadline;
     }
 
-    public Todo() {}
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
