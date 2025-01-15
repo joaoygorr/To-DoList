@@ -1,8 +1,11 @@
 package br.com.teste.todolist.module;
 
 import br.com.teste.todolist.module.enuns.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -25,12 +28,12 @@ public class Todo {
     private Status status;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "deadline")
-    private Date deadline;
+    private LocalDate deadline;
 
-    public Todo(String title, String description, Status status, Date deadline, Date creationDate) {
+    public Todo(String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
         this.title = title;
         this.description = description;
         this.status = status;
@@ -70,19 +73,19 @@ public class Todo {
         this.status = status;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 

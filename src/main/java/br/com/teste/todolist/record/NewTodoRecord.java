@@ -6,19 +6,19 @@ import br.com.teste.todolist.module.enuns.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record NewTodoRecord(@NotBlank(message = "Título não pode estar em branco") String title,
                             String description,
                             @NotNull(message = "O status não pode ser nulo") Status status,
-                            @NotNull(message = "O prazo não pode ser nulo") Date deadline) {
+                            @NotNull(message = "O prazo não pode ser nulo") LocalDate deadline) {
 
     public static Todo toEntity(NewTodoRecord newTodoRecord) {
         return new Todo(
                 newTodoRecord.title,
                 newTodoRecord.description,
                 newTodoRecord.status,
-                new Date(),
+                LocalDate.now(),
                 newTodoRecord.deadline
         );
     }
