@@ -2,6 +2,7 @@ package br.com.teste.todolist.controller;
 
 import br.com.teste.todolist.module.Todo;
 import br.com.teste.todolist.record.NewTodoRecord;
+import br.com.teste.todolist.record.TodoRecord;
 import br.com.teste.todolist.service.TodoService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,10 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Todo", description = "Endpoint relacionado a To-DoList")
 @RestController
@@ -30,9 +28,26 @@ public class TodoController {
     }
 
     @PostMapping
-    @Operation(summary = "Criação de To-DoList", description = "Endpoint relacionado a criação de tarefas")
-    public ResponseEntity<NewTodoRecord> postCustomer(@RequestBody @Valid NewTodoRecord newTodoRecord) {
+    @Operation(summary = "Criar um novo item de To-Do",
+            description = "Este endpoint cria um novo item de To-Do, aceitando os dados necessários no corpo da requisição.")
+    public ResponseEntity<NewTodoRecord> postTodo(@RequestBody @Valid NewTodoRecord newTodoRecord) {
         Todo response = this.todoService.createTodo(NewTodoRecord.toEntity(newTodoRecord));
         return ResponseEntity.status(HttpStatus.CREATED).body(NewTodoRecord.toDto(response));
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar Todo por ID",
+            description = "Recupera um Todo pelo seu ID e retorna os dados em formato DTO.")
+    public ResponseEntity<TodoRecord> getTodo(@PathVariable Long id) {
+        Todo response = this.todoService.getTodoById(id);
+        return ResponseEntity.ok(TodoRecord.toDto(response));
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar Todo por ID", description = "Deleta o Todo com o ID fornecido.")
+    public ResponseEntity<String> deleteTodo(@PathVariable Long id) {
+        this.todoService.deleteTodoById(id);
+        return ResponseEntity.ok("Registro excluído com sucesso");
+    }
+
 }
