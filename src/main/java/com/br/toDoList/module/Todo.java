@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "todos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,4 +35,13 @@ public class Todo {
 
     @Column(name = "deadline")
     private Date deadline;
+
+    public Todo(String title, String description, Status status, Date deadline, Date creationDate) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.creationDate = creationDate;
+        this.deadline = deadline;
+    }
+
 }
