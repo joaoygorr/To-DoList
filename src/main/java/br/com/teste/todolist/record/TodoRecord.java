@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public record TodoRecord(Long id,
                          @NotBlank(message = "Título não pode estar em branco") String title,
                          String description,
-                         @NotNull(message = "O status não pode ser nulo") Status status,
+                         Status status,
                          LocalDate creationDate,
                          @NotNull(message = "O prazo não pode ser nulo") LocalDate deadline) {
 
