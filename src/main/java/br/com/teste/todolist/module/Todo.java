@@ -41,6 +41,17 @@ public class Todo {
         this.deadline = deadline;
     }
 
+    public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.creationDate = creationDate;
+        this.deadline = deadline;
+    }
+
+    public Todo() {}
+
     public Long getId() {
         return id;
     }
