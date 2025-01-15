@@ -1,6 +1,7 @@
-package com.br.toDoList.service;
+package br.com.teste.todolist.service;
 
-import com.br.toDoList.repository.TodoRepository;
+import br.com.teste.todolist.repository.TodoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,3 +15,4 @@ public class TodoServiceImpl implements TodoService {
         this.todoRepository = todoRepository;
     }
 }
+

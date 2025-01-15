@@ -1,4 +1,4 @@
-package com.br.toDoList.module.enuns;
+package br.com.teste.todolist.module.enuns;
 
 public enum Status {
     PENDENTE,

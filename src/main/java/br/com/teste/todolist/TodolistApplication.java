@@ -1,13 +1,13 @@
-package com.br.toDoList;
+package br.com.teste.todolist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ToDoListApplication {
+public class TodolistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ToDoListApplication.class, args);
+		SpringApplication.run(TodolistApplication.class, args);
 	}
 
 }

@@ -1,6 +1,6 @@
-package com.br.toDoList.repository;
+package br.com.teste.todolist.repository;
 
-import com.br.toDoList.module.Todo;
+import br.com.teste.todolist.module.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

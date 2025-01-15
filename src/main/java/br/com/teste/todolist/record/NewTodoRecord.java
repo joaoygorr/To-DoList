@@ -1,7 +1,8 @@
-package com.br.toDoList.record;
+package br.com.teste.todolist.record;
 
-import com.br.toDoList.module.Todo;
-import com.br.toDoList.module.enuns.Status;
+import br.com.teste.todolist.module.Todo;
+import br.com.teste.todolist.module.enuns.Status;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -21,4 +22,14 @@ public record NewTodoRecord(@NotBlank(message = "Título não pode estar em bran
                 newTodoRecord.deadline
         );
     }
+
+    public static NewTodoRecord toDto(Todo todo) {
+        return new NewTodoRecord(
+                todo.getTitle(),
+                todo.getDescription(),
+                todo.getStatus(),
+                todo.getDeadline()
+        );
+    }
 }
+

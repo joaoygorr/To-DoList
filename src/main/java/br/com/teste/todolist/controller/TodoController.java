@@ -1,6 +1,6 @@
-package com.br.toDoList.controller;
+package br.com.teste.todolist.controller;
 
-import com.br.toDoList.service.TodoService;
+import br.com.teste.todolist.service.TodoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,4 +17,6 @@ public class TodoController {
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
+
+
 }
