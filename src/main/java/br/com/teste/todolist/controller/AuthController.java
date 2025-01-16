@@ -34,8 +34,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @Operation(summary = "Autenticar usuário",
-            description = "Realiza a autenticação de um usuário com base nas credenciais fornecidas e retorna um token de autenticação.")
+    @Operation(
+            summary = "Registrar um novo usuário",
+            description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado."
+    )
     public ResponseEntity<ResponseRecord> register(@RequestBody RegisterRequestRecord requestRecord) {
         ResponseRecord user = this.userService.register(requestRecord);
         return ResponseEntity.ok(user);
