@@ -1,4 +1,4 @@
-package br.com.teste.todolist.record;
+package br.com.teste.todolist.record.todo;
 
 import br.com.teste.todolist.module.Todo;
 import br.com.teste.todolist.module.enuns.Status;

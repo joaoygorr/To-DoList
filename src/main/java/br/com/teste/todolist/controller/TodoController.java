@@ -1,9 +1,9 @@
 package br.com.teste.todolist.controller;
 
 import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.record.NewTodoRecord;
-import br.com.teste.todolist.record.TodoRecord;
-import br.com.teste.todolist.service.TodoService;
+import br.com.teste.todolist.record.todo.NewTodoRecord;
+import br.com.teste.todolist.record.todo.TodoRecord;
+import br.com.teste.todolist.service.todo.TodoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
