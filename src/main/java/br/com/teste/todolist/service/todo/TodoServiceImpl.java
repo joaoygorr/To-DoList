@@ -1,4 +1,4 @@
-package br.com.teste.todolist.service;
+package br.com.teste.todolist.service.todo;
 
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.module.Todo;

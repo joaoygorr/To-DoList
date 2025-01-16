@@ -1,4 +1,4 @@
-package br.com.teste.todolist.service;
+package br.com.teste.todolist.service.todo;
 
 import br.com.teste.todolist.module.Todo;
 import org.springframework.data.domain.Page;
