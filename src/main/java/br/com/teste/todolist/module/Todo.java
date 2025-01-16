@@ -30,6 +30,10 @@ public class Todo {
     @Column(name = "deadline")
     private LocalDate deadline;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "FK_user_todo"))
+    private User user;
+
     public Todo(String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
         this.title = title;
         this.description = description;
