@@ -1,5 +1,7 @@
-package br.com.teste.todolist.infra.security;
+package br.com.teste.todolist.infra.security.config;
 
+import br.com.teste.todolist.infra.security.service.CustomUserDetailsService;
+import br.com.teste.todolist.infra.security.filter.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
