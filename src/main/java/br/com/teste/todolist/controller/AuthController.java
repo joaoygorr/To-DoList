@@ -34,8 +34,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @Operation(
-            summary = "Registrar um novo usuário",
+    @Operation(summary = "Registrar um novo usuário",
             description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado."
     )
     public ResponseEntity<ResponseRecord> register(@RequestBody RegisterRequestRecord requestRecord) {
