@@ -61,7 +61,7 @@ public class TodoController {
     @Operation(summary = "Listar Todos os Todos", description = "Retorna uma lista de todos os registros de Todo.")
     public ResponseEntity<Page<TodoRecord>> getAllTodos(@RequestParam(required = false) Status status,
                                                         @RequestParam(required = false) LocalDate deadline,
-                                                        Pageable pageable) {
+                                                        @RequestParam(required = false) Pageable pageable) {
         Page<Todo> todosPage = this.todoService.getAllTodos(status, deadline, pageable);
         return ResponseEntity.ok(todosPage.map(TodoRecord::toDto));
     }
