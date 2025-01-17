@@ -1,5 +1,6 @@
 package br.com.teste.todolist.service.todo;
 
+import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.infra.security.service.CustomUserDetailsService;
 import br.com.teste.todolist.module.Todo;
@@ -12,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,22 +36,25 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo createTodo(Todo todo) {
-        User userDetails = this.getLoggedUser();
-
-        User user = this.userRepository.findByName(userDetails.getName());
-
-        todo.setUsuario(user);
+        todo.setUsuario(this.returnUser());
         return this.todoRepository.save(todo);
     }
 
     @Override
     public Todo getTodoById(Long id) {
-        return this.todoRepository.findById(id)
+        Todo todo = this.todoRepository.findById(id)
                 .orElseThrow(() -> new Exception404("Item com o id " + id + "não encontrado!"));
+
+        if (!todo.getUsuario().equals(this.returnUser())) {
+            throw new Exception401("Você não tem permissão para visualizar este Todo");
+        }
+
+        return todo;
     }
 
     @Override
     public void deleteTodoById(Long id) {
+        getTodoById(id);
         if (this.getTodoById(id) != null) {
             this.todoRepository.deleteById(id);
         }
@@ -65,16 +68,19 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo updateTodo(Long id, Todo todo) {
-        Todo existingTodo = todoRepository.findById(id)
-                .orElseThrow(() -> new Exception404("Todo com ID " + id + " não encontrado."));
+        Todo existingTodo = this.getTodoById(id);
 
         existingTodo.setTitle(todo.getTitle());
         existingTodo.setDescription(todo.getDescription());
-        existingTodo.setCreationDate(LocalDate.now());
         existingTodo.setStatus(todo.getStatus());
         existingTodo.setDeadline(todo.getDeadline());
+        existingTodo.setUsuario(this.returnUser());
 
-        return todoRepository.save(existingTodo);
+        return this.todoRepository.save(existingTodo);
+    }
+
+    private User returnUser() {
+        return this.getLoggedUser();
     }
 
     private User getLoggedUser() {

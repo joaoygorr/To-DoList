@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "todos")
+@Table(name = "todos",
+        indexes = @Index(name = "idx_todos_usuario_name", columnList = "usuario_name"))
 public class Todo {
 
     @Id
@@ -30,9 +31,9 @@ public class Todo {
     @Column(name = "deadline")
     private LocalDate deadline;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "FK_user_todo"))
-    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_usuario_todo"))
+    private User usuario;
 
     public Todo(String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
         this.title = title;
@@ -40,6 +41,17 @@ public class Todo {
         this.status = status;
         this.creationDate = creationDate;
         this.deadline = deadline;
+    }
+
+    public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate,
+                User usuario) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.creationDate = creationDate;
+        this.deadline = deadline;
+        this.usuario = usuario;
     }
 
     public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
@@ -50,6 +62,8 @@ public class Todo {
         this.creationDate = creationDate;
         this.deadline = deadline;
     }
+
+    public Todo() {}
 
     public Long getId() {
         return id;
@@ -93,6 +107,14 @@ public class Todo {
 
     public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
+    }
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
     }
 
 }

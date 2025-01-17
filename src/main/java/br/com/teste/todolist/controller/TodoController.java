@@ -6,6 +6,7 @@ import br.com.teste.todolist.record.todo.TodoRecord;
 import br.com.teste.todolist.service.todo.TodoService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Todo", description = "Endpoint relacionado a To-DoList")
 @RestController
+@SecurityRequirement(name = "bearer-key")
 @RequestMapping("/todo")
 public class TodoController {
 
