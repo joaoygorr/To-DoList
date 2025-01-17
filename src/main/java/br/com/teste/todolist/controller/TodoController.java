@@ -1,6 +1,7 @@
 package br.com.teste.todolist.controller;
 
 import br.com.teste.todolist.module.Todo;
+import br.com.teste.todolist.module.enuns.Status;
 import br.com.teste.todolist.record.todo.NewTodoRecord;
 import br.com.teste.todolist.record.todo.TodoRecord;
 import br.com.teste.todolist.service.todo.TodoService;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @Tag(name = "Todo", description = "Endpoint relacionado a To-DoList")
 @RestController
@@ -56,8 +59,10 @@ public class TodoController {
 
     @GetMapping
     @Operation(summary = "Listar Todos os Todos", description = "Retorna uma lista de todos os registros de Todo.")
-    public ResponseEntity<Page<TodoRecord>> getAllTodos(Pageable pageable) {
-        Page<Todo> todosPage = this.todoService.getAllTodos(pageable);
+    public ResponseEntity<Page<TodoRecord>> getAllTodos(@RequestParam(required = false) Status status,
+                                                        @RequestParam(required = false) LocalDate deadline,
+                                                        Pageable pageable) {
+        Page<Todo> todosPage = this.todoService.getAllTodos(status, deadline, pageable);
         return ResponseEntity.ok(todosPage.map(TodoRecord::toDto));
     }
 

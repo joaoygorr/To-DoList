@@ -4,15 +4,17 @@ import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.module.Todo;
 import br.com.teste.todolist.module.User;
+import br.com.teste.todolist.module.enuns.Status;
 import br.com.teste.todolist.repository.TodoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -53,7 +55,14 @@ public class TodoServiceImpl implements TodoService {
 
 
     @Override
-    public Page<Todo> getAllTodos(Pageable pageable) {
+    public Page<Todo> getAllTodos(Status status,LocalDate deadline, Pageable pageable) {
+        if (status != null && deadline != null) {
+            return todoRepository.findByStatusAndDeadline(status, deadline, pageable);
+        } else if (status != null) {
+            return todoRepository.findByStatus(status, pageable);
+        } else if (deadline != null) {
+            return todoRepository.findByDeadline(deadline, pageable);
+        }
         return this.todoRepository.findByUsuarioName(pageable, this.getLoggedUser().getName());
     }
 
