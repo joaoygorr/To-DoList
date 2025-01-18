@@ -37,9 +37,9 @@ public class TodoController {
     @PostMapping
     @Operation(summary = "Criar um novo item de To-Do",
             description = "Este endpoint cria um novo item de To-Do, aceitando os dados necessários no corpo da requisição.")
-    public ResponseEntity<NewTodoRecord> postTodo(@RequestBody @Valid NewTodoRecord newTodoRecord) {
+    public ResponseEntity<TodoRecord> postTodo(@RequestBody @Valid NewTodoRecord newTodoRecord) {
         Todo response = this.todoService.createTodo(NewTodoRecord.toEntity(newTodoRecord));
-        return ResponseEntity.status(HttpStatus.CREATED).body(NewTodoRecord.toDto(response));
+        return ResponseEntity.status(HttpStatus.CREATED).body(TodoRecord.toDto(response));
     }
 
     @GetMapping("/{id}")
