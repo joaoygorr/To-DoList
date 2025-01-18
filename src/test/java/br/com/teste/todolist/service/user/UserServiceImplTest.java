@@ -85,7 +85,7 @@ class UserServiceImplTest {
 
     @Test
     @DisplayName("Login feito com sucesso")
-    void login() {
+    void loginSuccess() {
         when(userRepository.findByEmail(loginRecord.email())).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(loginRecord.password(), user.getPassword())).thenReturn(true);
         when(tokenService.generateToken(user)).thenReturn("generatedToken");
