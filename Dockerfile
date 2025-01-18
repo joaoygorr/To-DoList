@@ -12,7 +12,7 @@ FROM eclipse-temurin:21
 
 WORKDIR /app
 
-COPY --from=build /app/target/toDoList-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/target/todolist-0.0.1-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8080
 
