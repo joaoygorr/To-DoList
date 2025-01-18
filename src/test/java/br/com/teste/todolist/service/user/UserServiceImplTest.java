@@ -61,6 +61,7 @@ class UserServiceImplTest {
 
         User savedUser = userCaptor.getValue();
 
+        assertNotNull(savedUser);
         assertEquals("souza", savedUser.getName());
         assertEquals("souza@gmail.com", savedUser.getEmail());
         assertEquals("encodedPassword", savedUser.getPassword());
