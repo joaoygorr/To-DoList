@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("test")
-public class UserTestIntegration extends AbstractIntegrationTest {
+public class UserIntegrationTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
 
