@@ -29,7 +29,7 @@ public class AuthController {
     @Operation(summary = "Autenticar usuário",
             description = "Realiza a autenticação de um usuário com base nas credenciais fornecidas e retorna um token de autenticação.")
     public ResponseEntity<ResponseRecord> login(@RequestBody LoginRecord loginRecord) {
-        ResponseRecord user = this.userService.login(loginRecord);
+        ResponseRecord user = this.userService.login(LoginRecord.toEntity(loginRecord));
         return ResponseEntity.ok(user);
     }
 
@@ -38,7 +38,7 @@ public class AuthController {
             description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado."
     )
     public ResponseEntity<ResponseRecord> register(@RequestBody RegisterRequestRecord requestRecord) {
-        ResponseRecord user = this.userService.register(requestRecord);
+        ResponseRecord user = this.userService.register(RegisterRequestRecord.toEntity(requestRecord));
         return ResponseEntity.ok(user);
     }
 }
