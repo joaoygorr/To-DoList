@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -36,7 +37,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo getTodoById(Long id) {
         Todo todo = this.todoRepository.findById(id)
-                .orElseThrow(() -> new Exception404("Item com o id " + id + "não encontrado!"));
+                .orElseThrow(() -> new Exception404("Item com o id " + id + " não encontrado!"));
 
         if (!todo.getUsuario().equals(this.returnUser())) {
             throw new Exception401("Você não tem permissão para visualizar este Todo");
@@ -83,19 +84,15 @@ public class TodoServiceImpl implements TodoService {
         return this.getLoggedUser();
     }
 
-    private User getLoggedUser() {
+    protected User getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null && authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-
-            if (principal instanceof User user) {
-                return user;
-            }
-
-            throw new RuntimeException("O principal não é uma instância de UserDetails.");
-        }
-        throw new RuntimeException("Usuário não autenticado.");
+        return Optional.ofNullable(authentication)
+                .filter(Authentication::isAuthenticated)
+                .map(Authentication::getPrincipal)
+                .filter(principal -> principal instanceof User)
+                .map(principal -> (User) principal)
+                .orElseThrow(() -> new RuntimeException("Usuário não autenticado ou principal inválido."));
     }
 }
 
