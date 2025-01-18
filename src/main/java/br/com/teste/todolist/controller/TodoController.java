@@ -69,8 +69,8 @@ public class TodoController {
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza um registro de Todo",
             description = "Atualiza os dados de um registro de Todo existente com base no ID fornecido.")
-    public ResponseEntity<TodoRecord> updateTodo(@PathVariable Long id, @RequestBody @Valid TodoRecord updatedTodoRecord) {
-        Todo updatedTodo = todoService.updateTodo(id, TodoRecord.toEntity(updatedTodoRecord));
-        return ResponseEntity.ok(TodoRecord.toDto(updatedTodo));
+    public ResponseEntity<NewTodoRecord> updateTodo(@PathVariable Long id, @RequestBody @Valid NewTodoRecord newTodoRecord) {
+        Todo updatedTodo = todoService.updateTodo(id, NewTodoRecord.toEntity(newTodoRecord));
+        return ResponseEntity.ok(NewTodoRecord.toDto(updatedTodo));
     }
 }
