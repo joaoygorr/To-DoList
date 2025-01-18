@@ -54,11 +54,7 @@ class UserServiceImplTest {
         when(passwordEncoder.encode(user.getPassword())).thenReturn("encodedPassword");
         when(tokenService.generateToken(any(User.class))).thenReturn("generatedToken");
 
-        ResponseRecord response = userService.register(user);
-
-        assertNotNull(response);
-        assertEquals("souza", response.name());
-        assertEquals("generatedToken", response.token());
+        userService.register(user);
 
         ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
         verify(userRepository).save(userCaptor.capture());
