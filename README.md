@@ -8,7 +8,7 @@ Este projeto é uma API para gerenciar tarefas (To-DoList), construída com Spri
 - [Java 21 (JDK)](https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows)
 - [Maven](https://maven.apache.org/download.cgi)
 - [Docker](https://www.docker.com/products/docker-desktop)
-- Git 
+- [Git](https://git-scm.com/downloads) 
 
 ---
 
