@@ -43,6 +43,13 @@ public class Todo {
         this.deadline = deadline;
     }
 
+    public Todo(String title, String description, Status status, LocalDate deadline) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.deadline = deadline;
+    }
+
     public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate,
                 User usuario) {
         this.id = id;
