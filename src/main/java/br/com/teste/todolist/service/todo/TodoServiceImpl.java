@@ -30,7 +30,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo createTodo(Todo todo) {
-        todo.setUsuario(this.returnUser());
+        todo.setUsuario(this.getLoggedUser());
         return this.todoRepository.save(todo);
     }
 
@@ -39,7 +39,7 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = this.todoRepository.findById(id)
                 .orElseThrow(() -> new Exception404("Item com o id " + id + " não encontrado!"));
 
-        if (!todo.getUsuario().equals(this.returnUser())) {
+        if (!todo.getUsuario().getId().equals(this.getLoggedUser().getId())) {
             throw new Exception401("Você não tem permissão para visualizar este Todo");
         }
 
@@ -75,13 +75,9 @@ public class TodoServiceImpl implements TodoService {
         existingTodo.setDescription(todo.getDescription());
         existingTodo.setStatus(todo.getStatus());
         existingTodo.setDeadline(todo.getDeadline());
-        existingTodo.setUsuario(this.returnUser());
+        existingTodo.setUsuario(this.getLoggedUser());
 
         return this.todoRepository.save(existingTodo);
-    }
-
-    private User returnUser() {
-        return this.getLoggedUser();
     }
 
     protected User getLoggedUser() {
