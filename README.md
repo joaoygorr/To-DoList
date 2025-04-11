@@ -1,6 +1,5 @@
 # To-DoList
-Este projeto é uma API para gerenciar tarefas (To-DoList), construída com Spring Boot. Inclui funcionalidades para criar, atualizar, listar e excluir tarefas, além de integração com autenticação e documentação Swagger.
-
+Este projeto é a solução de um teste técnico: uma API desenvolvida com Spring Boot para gerenciamento de tarefas (To-Do List). A aplicação permite criar, atualizar, listar e excluir tarefas, além de contar com integração de autenticação e documentação via Swagger.
 ---
 
 ## 🚀 Pré-requisitos
