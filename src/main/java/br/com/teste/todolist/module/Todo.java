@@ -2,63 +2,45 @@ package br.com.teste.todolist.module;
 
 import br.com.teste.todolist.module.enuns.Status;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "todos",
-        indexes = @Index(name = "idx_todos_usuario_name", columnList = "usuario_id"))
+@Table(indexes = @Index(name = "idx_todos_usuario_name", columnList = "usuario_id"))
+@EqualsAndHashCode(of = "id")
 public class Todo {
 
     @Id
-    @Column(name = "id_todo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(name = "creation_date")
     private LocalDate creationDate;
 
-    @Column(name = "deadline")
     private LocalDate deadline;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_usuario_todo"))
     private User usuario;
 
-    public Todo(String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.creationDate = creationDate;
-        this.deadline = deadline;
-    }
-
     public Todo(String title, String description, Status status, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.deadline = deadline;
-    }
-
-    public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate,
-                User usuario) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.creationDate = creationDate;
-        this.deadline = deadline;
-        this.usuario = usuario;
     }
 
     public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
@@ -69,59 +51,4 @@ public class Todo {
         this.creationDate = creationDate;
         this.deadline = deadline;
     }
-
-    public Todo() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDate deadline) {
-        this.deadline = deadline;
-    }
-
-    public User getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
-    }
-
 }
