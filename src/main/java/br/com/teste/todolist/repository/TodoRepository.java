@@ -18,4 +18,6 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     Page<Todo> findByDeadline(LocalDate deadline, Pageable pageable);
 
     Page<Todo> findByStatusAndDeadline(Status status, LocalDate deadline, Pageable pageable);
+
+    Page<Todo> findByUsuarioIdAndStatusAndDeadline(Long User, Status status, LocalDate deadline, Pageable pageable);
 }

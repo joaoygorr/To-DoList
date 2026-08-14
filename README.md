@@ -54,4 +54,4 @@ cd To-DoList
     ```
 ## 📖 Swagger (Documentação da API)
 A documentação da API está disponível via **Swagger**. Após iniciar o servidor acesse:
-[Documentação](http://localhost:8080/apiswagger-ui.html)
+[Documentação](http://localhost:8080/api/swagger-ui.html)

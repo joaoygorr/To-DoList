@@ -7,6 +7,7 @@ import br.com.teste.todolist.module.User;
 import br.com.teste.todolist.module.enuns.Status;
 import br.com.teste.todolist.repository.TodoRepository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,7 @@ public class TodoServiceImpl implements TodoService {
         this.todoRepository = todoRepository;
     }
 
+    @Transactional
     @Override
     public Todo createTodo(Todo todo) {
         todo.setUsuario(this.getLoggedUser());
@@ -46,19 +48,17 @@ public class TodoServiceImpl implements TodoService {
         return todo;
     }
 
+    @Transactional
     @Override
     public void deleteTodoById(Long id) {
-        getTodoById(id);
-        if (this.getTodoById(id) != null) {
-            this.todoRepository.deleteById(id);
-        }
+        Todo todo = getTodoById(id);
+        this.todoRepository.delete(todo);
     }
-
 
     @Override
     public Page<Todo> getAllTodos(Status status,LocalDate deadline, Pageable pageable) {
         if (status != null && deadline != null) {
-            return todoRepository.findByStatusAndDeadline(status, deadline, pageable);
+            return todoRepository.findByUsuarioIdAndStatusAndDeadline(getLoggedUser().getId(), status, deadline, pageable);
         } else if (status != null) {
             return todoRepository.findByStatus(status, pageable);
         } else if (deadline != null) {
@@ -67,6 +67,7 @@ public class TodoServiceImpl implements TodoService {
         return this.todoRepository.findByUsuarioName(pageable, this.getLoggedUser().getName());
     }
 
+    @Transactional
     @Override
     public Todo updateTodo(Long id, Todo todo) {
         Todo existingTodo = this.getTodoById(id);
