@@ -18,7 +18,6 @@ public record NewTodoRecord(@NotBlank(message = "Título não pode estar em bran
                 newTodoRecord.title,
                 newTodoRecord.description,
                 newTodoRecord.status,
-                LocalDate.now(),
                 newTodoRecord.deadline
         );
     }

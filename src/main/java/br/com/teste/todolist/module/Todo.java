@@ -21,15 +21,18 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private String description;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
     private LocalDate creationDate;
 
+    @Column(nullable = false)
     private LocalDate deadline;
 
     @ManyToOne(fetch = FetchType.EAGER)
