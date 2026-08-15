@@ -1,4 +1,4 @@
-package br.com.teste.todolist.mappers;
+package br.com.teste.todolist.modules.todo.mapper;
 
 import org.mapstruct.Mapper;
 

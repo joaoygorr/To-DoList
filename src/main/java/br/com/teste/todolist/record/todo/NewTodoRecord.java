@@ -1,7 +1,7 @@
 package br.com.teste.todolist.record.todo;
 
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.Todo;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,14 +11,14 @@ import java.time.LocalDate;
 public record NewTodoRecord(@NotBlank(message = "Título não pode estar em branco") String title,
                             String description,
                             @NotNull(message = "O status não pode ser nulo") Status status,
-                            @NotNull(message = "O prazo não pode ser nulo") LocalDate deadline) {
+                            @NotNull(message = "O prazo não pode ser nulo") LocalDate deadLine) {
 
     public static Todo toEntity(NewTodoRecord newTodoRecord) {
         return new Todo(
                 newTodoRecord.title,
                 newTodoRecord.description,
                 newTodoRecord.status,
-                newTodoRecord.deadline
+                newTodoRecord.deadLine
         );
     }
 
@@ -27,7 +27,7 @@ public record NewTodoRecord(@NotBlank(message = "Título não pode estar em bran
                 todo.getTitle(),
                 todo.getDescription(),
                 todo.getStatus(),
-                todo.getDeadline()
+                todo.getDeadLine()
         );
     }
 }

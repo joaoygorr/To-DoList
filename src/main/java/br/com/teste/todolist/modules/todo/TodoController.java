@@ -1,10 +1,8 @@
-package br.com.teste.todolist.controller;
+package br.com.teste.todolist.modules.todo;
 
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import br.com.teste.todolist.record.todo.NewTodoRecord;
 import br.com.teste.todolist.record.todo.TodoRecord;
-import br.com.teste.todolist.service.todo.TodoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -60,9 +58,9 @@ public class TodoController {
     @GetMapping
     @Operation(summary = "Listar Todos os Todos", description = "Retorna uma lista de todos os registros de Todo.")
     public ResponseEntity<Page<TodoRecord>> getAllTodos(@RequestParam(required = false) Status status,
-                                                        @RequestParam(required = false) LocalDate deadline,
+                                                        @RequestParam(required = false) LocalDate deadLine,
                                                         @RequestParam(required = false) Pageable pageable) {
-        Page<Todo> todosPage = this.todoService.getAllTodos(status, deadline, pageable);
+        Page<Todo> todosPage = this.todoService.getAllTodos(status, deadLine, pageable);
         return ResponseEntity.ok(todosPage.map(TodoRecord::toDto));
     }
 

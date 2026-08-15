@@ -1,6 +1,5 @@
-package br.com.teste.todolist.repository;
+package br.com.teste.todolist.modules.auth;
 
-import br.com.teste.todolist.module.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

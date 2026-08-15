@@ -1,11 +1,9 @@
-package br.com.teste.todolist.service.todo;
+package br.com.teste.todolist.modules.todo;
 
 import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.exceptions.Exception404;
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.User;
-import br.com.teste.todolist.module.enuns.Status;
-import br.com.teste.todolist.repository.TodoRepository;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import java.util.Optional;
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository todoRepository;
-
 
     @Autowired
     public TodoServiceImpl(TodoRepository todoRepository) {
@@ -56,13 +53,13 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Page<Todo> getAllTodos(Status status,LocalDate deadline, Pageable pageable) {
-        if (status != null && deadline != null) {
-            return todoRepository.findByUsuarioIdAndStatusAndDeadline(getLoggedUser().getId(), status, deadline, pageable);
+    public Page<Todo> getAllTodos(Status status,LocalDate deadLine, Pageable pageable) {
+        if (status != null && deadLine != null) {
+            return todoRepository.findByUsuarioIdAndStatusAndDeadLine(getLoggedUser().getId(), status, deadLine, pageable);
         } else if (status != null) {
             return todoRepository.findByStatus(status, pageable);
-        } else if (deadline != null) {
-            return todoRepository.findByDeadline(deadline, pageable);
+        } else if (deadLine != null) {
+            return todoRepository.findByDeadLine(deadLine, pageable);
         }
         return this.todoRepository.findByUsuarioName(pageable, this.getLoggedUser().getName());
     }
@@ -75,13 +72,13 @@ public class TodoServiceImpl implements TodoService {
         existingTodo.setTitle(todo.getTitle());
         existingTodo.setDescription(todo.getDescription());
         existingTodo.setStatus(todo.getStatus());
-        existingTodo.setDeadline(todo.getDeadline());
+        existingTodo.setDeadLine(todo.getDeadLine());
         existingTodo.setUsuario(this.getLoggedUser());
 
         return this.todoRepository.save(existingTodo);
     }
 
-    protected User getLoggedUser() {
+    public User getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         return Optional.ofNullable(authentication)

@@ -1,9 +1,8 @@
-package br.com.teste.todolist.controller;
+package br.com.teste.todolist.modules.auth;
 
 import br.com.teste.todolist.record.login.LoginRecord;
 import br.com.teste.todolist.record.login.RegisterRequestRecord;
 import br.com.teste.todolist.record.login.ResponseRecord;
-import br.com.teste.todolist.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

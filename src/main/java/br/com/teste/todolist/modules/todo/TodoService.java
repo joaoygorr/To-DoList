@@ -1,7 +1,6 @@
-package br.com.teste.todolist.service.todo;
+package br.com.teste.todolist.modules.todo;
 
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,7 +14,7 @@ public interface TodoService {
 
     void deleteTodoById(Long id);
 
-    Page<Todo> getAllTodos(Status status, LocalDate deadline, Pageable pageable);
+    Page<Todo> getAllTodos(Status status, LocalDate deadLine, Pageable pageable);
 
     Todo updateTodo(Long id, Todo todo);
 }

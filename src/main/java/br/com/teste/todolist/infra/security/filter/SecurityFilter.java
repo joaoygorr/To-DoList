@@ -2,8 +2,8 @@ package br.com.teste.todolist.infra.security.filter;
 
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.infra.security.service.TokenService;
-import br.com.teste.todolist.module.User;
-import br.com.teste.todolist.repository.UserRepository;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.auth.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

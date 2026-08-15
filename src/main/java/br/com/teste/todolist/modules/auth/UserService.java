@@ -1,6 +1,5 @@
-package br.com.teste.todolist.service.user;
+package br.com.teste.todolist.modules.auth;
 
-import br.com.teste.todolist.module.User;
 import br.com.teste.todolist.record.login.ResponseRecord;
 
 public interface UserService {

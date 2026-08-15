@@ -1,7 +1,7 @@
 package br.com.teste.todolist.record.todo;
 
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.Todo;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,7 +12,7 @@ public record TodoRecord(Long id,
                          String description,
                          Status status,
                          LocalDate creationDate,
-                         @NotNull(message = "O prazo não pode ser nulo") LocalDate deadline) {
+                         @NotNull(message = "O prazo não pode ser nulo") LocalDate deadLine) {
 
     public static TodoRecord toDto(Todo todo) {
         return new TodoRecord(
@@ -21,7 +21,7 @@ public record TodoRecord(Long id,
                 todo.getDescription(),
                 todo.getStatus(),
                 todo.getCreationDate(),
-                todo.getDeadline()
+                todo.getDeadLine()
         );
     }
 
@@ -32,7 +32,7 @@ public record TodoRecord(Long id,
                 todoRecord.description(),
                 todoRecord.status,
                 todoRecord.creationDate,
-                todoRecord.deadline
+                todoRecord.deadLine
         );
     }
 }

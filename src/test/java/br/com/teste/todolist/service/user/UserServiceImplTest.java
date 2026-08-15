@@ -2,9 +2,10 @@ package br.com.teste.todolist.service.user;
 
 import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.infra.security.service.TokenService;
-import br.com.teste.todolist.module.User;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.auth.UserServiceImpl;
 import br.com.teste.todolist.record.login.ResponseRecord;
-import br.com.teste.todolist.repository.UserRepository;
+import br.com.teste.todolist.modules.auth.UserRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

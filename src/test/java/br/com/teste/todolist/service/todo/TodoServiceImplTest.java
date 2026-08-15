@@ -2,10 +2,11 @@ package br.com.teste.todolist.service.todo;
 
 import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.exceptions.Exception404;
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.User;
-import br.com.teste.todolist.module.enuns.Status;
-import br.com.teste.todolist.repository.TodoRepository;
+import br.com.teste.todolist.modules.todo.Todo;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.todo.enuns.Status;
+import br.com.teste.todolist.modules.todo.TodoServiceImpl;
+import br.com.teste.todolist.modules.todo.TodoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -170,13 +171,13 @@ class TodoServiceImplTest {
 
         Page<Todo> expectedPage = new PageImpl<>(List.of(new Todo(), new Todo()));
 
-        when(todoRepository.findByStatusAndDeadline(status, deadline, pageable)).thenReturn(expectedPage);
+        when(todoRepository.findByStatusAndDeadLine(status, deadline, pageable)).thenReturn(expectedPage);
 
         Page<Todo> result = todoService.getAllTodos(status, deadline, pageable);
 
         assertNotNull(result);
         assertEquals(2, result.getTotalElements());
-        verify(todoRepository).findByStatusAndDeadline(status, deadline, pageable);
+        verify(todoRepository).findByStatusAndDeadLine(status, deadline, pageable);
     }
 
     @Test
@@ -204,13 +205,13 @@ class TodoServiceImplTest {
 
         Page<Todo> expectedPage = new PageImpl<>(List.of(new Todo(), new Todo()));
 
-        when(todoRepository.findByDeadline(deadline, pageable)).thenReturn(expectedPage);
+        when(todoRepository.findByDeadLine(deadline, pageable)).thenReturn(expectedPage);
 
         Page<Todo> result = todoService.getAllTodos(null, deadline, pageable);
 
         assertNotNull(result);
         assertEquals(2, result.getTotalElements());
-        verify(todoRepository).findByDeadline(deadline, pageable);
+        verify(todoRepository).findByDeadLine(deadline, pageable);
     }
 
     @Test

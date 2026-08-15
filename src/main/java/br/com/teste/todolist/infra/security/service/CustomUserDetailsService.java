@@ -1,7 +1,7 @@
 package br.com.teste.todolist.infra.security.service;
 
-import br.com.teste.todolist.module.User;
-import br.com.teste.todolist.repository.UserRepository;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.auth.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

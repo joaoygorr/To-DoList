@@ -1,4 +1,4 @@
-package br.com.teste.todolist.module;
+package br.com.teste.todolist.modules.auth;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Table
+@Table(name = "users")
 @Entity
 @Data
 @NoArgsConstructor

@@ -1,6 +1,7 @@
-package br.com.teste.todolist.module;
+package br.com.teste.todolist.modules.todo;
 
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,25 +34,25 @@ public class Todo {
     private LocalDate creationDate;
 
     @Column(nullable = false)
-    private LocalDate deadline;
+    private LocalDate deadLine;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_usuario_todo"))
     private User usuario;
 
-    public Todo(String title, String description, Status status, LocalDate deadline) {
+    public Todo(String title, String description, Status status, LocalDate deadLine) {
         this.title = title;
         this.description = description;
         this.status = status;
-        this.deadline = deadline;
+        this.deadLine = deadLine;
     }
 
-    public Todo(Long id, String title, String description, Status status, LocalDate deadline, LocalDate creationDate) {
+    public Todo(Long id, String title, String description, Status status, LocalDate deadLine, LocalDate creationDate) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.creationDate = creationDate;
-        this.deadline = deadline;
+        this.deadLine = deadLine;
     }
 }

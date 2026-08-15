@@ -1,6 +1,6 @@
 package br.com.teste.todolist.infra.security.service;
 
-import br.com.teste.todolist.module.User;
+import br.com.teste.todolist.modules.auth.User;
 
 public interface TokenService {
 

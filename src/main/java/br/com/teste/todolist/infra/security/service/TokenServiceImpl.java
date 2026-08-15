@@ -1,6 +1,6 @@
 package br.com.teste.todolist.infra.security.service;
 
-import br.com.teste.todolist.module.User;
+import br.com.teste.todolist.modules.auth.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

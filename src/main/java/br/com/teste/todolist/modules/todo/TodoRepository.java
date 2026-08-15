@@ -1,7 +1,6 @@
-package br.com.teste.todolist.repository;
+package br.com.teste.todolist.modules.todo;
 
-import br.com.teste.todolist.module.Todo;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,9 +14,9 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     Page<Todo> findByStatus(Status status, Pageable pageable);
 
-    Page<Todo> findByDeadline(LocalDate deadline, Pageable pageable);
+    Page<Todo> findByDeadLine(LocalDate deadLine, Pageable pageable);
 
-    Page<Todo> findByStatusAndDeadline(Status status, LocalDate deadline, Pageable pageable);
+    Page<Todo> findByStatusAndDeadLine(Status status, LocalDate deadLine, Pageable pageable);
 
-    Page<Todo> findByUsuarioIdAndStatusAndDeadline(Long User, Status status, LocalDate deadline, Pageable pageable);
+    Page<Todo> findByUsuarioIdAndStatusAndDeadLine(Long User, Status status, LocalDate deadline, Pageable pageable);
 }

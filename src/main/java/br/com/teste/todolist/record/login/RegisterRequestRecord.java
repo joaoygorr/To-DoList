@@ -1,6 +1,6 @@
 package br.com.teste.todolist.record.login;
 
-import br.com.teste.todolist.module.User;
+import br.com.teste.todolist.modules.auth.User;
 import jakarta.validation.constraints.NotBlank;
 
 public record RegisterRequestRecord(@NotBlank(message = "Nome não pode estar em branco") String name,
@@ -9,7 +9,7 @@ public record RegisterRequestRecord(@NotBlank(message = "Nome não pode estar em
 
     public static User toEntity(RegisterRequestRecord requestRecord) {
         return new User(
-                requestRecord.name,
+                requestRecord.name(),
                 requestRecord.email(),
                 requestRecord.password()
         );

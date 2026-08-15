@@ -3,7 +3,7 @@ package br.com.teste.todolist.integration.test;
 import br.com.teste.todolist.integration.config.TestConfigs;
 import br.com.teste.todolist.integration.containers.AbstractIntegrationTest;
 import br.com.teste.todolist.integration.utils.BaseAuthTest;
-import br.com.teste.todolist.module.enuns.Status;
+import br.com.teste.todolist.modules.todo.enuns.Status;
 import br.com.teste.todolist.record.todo.NewTodoRecord;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
