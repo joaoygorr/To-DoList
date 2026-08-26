@@ -16,7 +16,7 @@ http:
         "title": "teste",
         "description": "teste",
         "status": "PENDENTE", 
-        "deadLine": "26/04/2002"
+        "deadLine": "2002-04-26"
       }
   auth: inherit
 

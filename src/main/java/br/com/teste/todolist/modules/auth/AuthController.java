@@ -1,28 +1,24 @@
 package br.com.teste.todolist.modules.auth;
 
+import br.com.teste.todolist.modules.auth.dtos.UserDTO;
 import br.com.teste.todolist.record.login.LoginRecord;
-import br.com.teste.todolist.record.login.RegisterRequestRecord;
 import br.com.teste.todolist.record.login.ResponseRecord;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
 @Tag(name = "Auth", description = "Endpoint relacionado autenticação")
 public class AuthController {
 
     private final UserService userService;
-
-    @Autowired
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/login")
     @Operation(summary = "Autenticar usuário",
@@ -34,10 +30,9 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(summary = "Registrar um novo usuário",
-            description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado."
-    )
-    public ResponseEntity<ResponseRecord> register(@RequestBody RegisterRequestRecord requestRecord) {
-        ResponseRecord user = this.userService.register(RegisterRequestRecord.toEntity(requestRecord));
+            description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado.")
+    public ResponseEntity<UserDTO> register(@RequestBody UserDTO dto) {
+        UserDTO user = this.userService.register(dto);
         return ResponseEntity.ok(user);
     }
 }
