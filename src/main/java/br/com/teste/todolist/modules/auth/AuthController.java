@@ -1,11 +1,12 @@
 package br.com.teste.todolist.modules.auth;
 
+import br.com.teste.todolist.modules.auth.dtos.LoginDTO;
 import br.com.teste.todolist.modules.auth.dtos.UserDTO;
-import br.com.teste.todolist.record.login.LoginRecord;
-import br.com.teste.todolist.record.login.ResponseRecord;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,16 +24,14 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Autenticar usuário",
             description = "Realiza a autenticação de um usuário com base nas credenciais fornecidas e retorna um token de autenticação.")
-    public ResponseEntity<ResponseRecord> login(@RequestBody LoginRecord loginRecord) {
-        ResponseRecord user = this.userService.login(LoginRecord.toEntity(loginRecord));
-        return ResponseEntity.ok(user);
+    public ResponseEntity<LoginDTO> login(@RequestBody @Valid LoginDTO LoginDTO) {
+        return ResponseEntity.ok(this.userService.login(LoginDTO));
     }
 
     @PostMapping("/register")
     @Operation(summary = "Registrar um novo usuário",
             description = "Cria um novo usuário no sistema com base nos dados fornecidos na requisição. Retorna os detalhes do usuário registrado.")
-    public ResponseEntity<UserDTO> register(@RequestBody UserDTO dto) {
-        UserDTO user = this.userService.register(dto);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<UserDTO> register(@RequestBody @Valid UserDTO userDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.userService.register(userDTO));
     }
 }

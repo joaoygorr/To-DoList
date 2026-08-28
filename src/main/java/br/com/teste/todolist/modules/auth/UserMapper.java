@@ -1,7 +1,6 @@
-package br.com.teste.todolist.modules.auth.mappers;
+package br.com.teste.todolist.modules.auth;
 
 import br.com.teste.todolist.infra.security.service.TokenService;
-import br.com.teste.todolist.modules.auth.User;
 import br.com.teste.todolist.modules.auth.dtos.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

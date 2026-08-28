@@ -1,10 +1,10 @@
 package br.com.teste.todolist.modules.auth;
 
+import br.com.teste.todolist.modules.auth.dtos.LoginDTO;
 import br.com.teste.todolist.modules.auth.dtos.UserDTO;
-import br.com.teste.todolist.record.login.ResponseRecord;
 
 public interface UserService {
-    ResponseRecord login(User user);
+    LoginDTO login(LoginDTO loginDTO);
 
     UserDTO register(UserDTO userDTO);
 }
