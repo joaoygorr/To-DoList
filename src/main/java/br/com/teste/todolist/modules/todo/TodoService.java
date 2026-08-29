@@ -1,5 +1,6 @@
 package br.com.teste.todolist.modules.todo;
 
+import br.com.teste.todolist.modules.todo.dtos.TodoDTO;
 import br.com.teste.todolist.modules.todo.enuns.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 
 public interface TodoService {
 
-    Todo createTodo(Todo todo);
+    TodoDTO createTodo(TodoDTO todoDTO);
 
     Todo getTodoById(Long id);
 

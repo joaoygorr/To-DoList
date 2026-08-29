@@ -2,8 +2,8 @@ package br.com.teste.todolist.integration.test;
 
 import br.com.teste.todolist.integration.config.TestConfigs;
 import br.com.teste.todolist.integration.containers.AbstractIntegrationTest;
-import br.com.teste.todolist.record.login.LoginRecord;
-import br.com.teste.todolist.record.login.RegisterRequestRecord;
+import br.com.teste.todolist.modules.auth.dtos.LoginDTO;
+import br.com.teste.todolist.modules.auth.dtos.UserDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -39,7 +39,7 @@ public class UserIntegrationTest extends AbstractIntegrationTest {
         String response = given()
                 .spec(specification)
                 .contentType(TestConfigs.CONTENT_TYPE_JSON)
-                .body(new RegisterRequestRecord("souza", "souza@gmail.com", "123456"))
+                .body(new UserDTO("souza", "souza@gmail.com", "123456"))
                 .when().post().then()
                 .statusCode(200)
                 .header("Content-Type", "application/json")
@@ -63,7 +63,7 @@ public class UserIntegrationTest extends AbstractIntegrationTest {
         String response = given()
                 .spec(specification)
                 .contentType(TestConfigs.CONTENT_TYPE_JSON)
-                .body(new LoginRecord("souza@gmail.com", "123456"))
+                .body(new LoginDTO("souza@gmail.com", "123456"))
                 .when().post().then()
                 .statusCode(200)
                 .header("Content-Type", "application/json")
@@ -71,5 +71,4 @@ public class UserIntegrationTest extends AbstractIntegrationTest {
 
         assertNotNull(response);
     }
-
 }

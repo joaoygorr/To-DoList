@@ -3,10 +3,11 @@ package br.com.teste.todolist.modules.todo;
 import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.exceptions.Exception404;
 import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.todo.dtos.TodoDTO;
 import br.com.teste.todolist.modules.todo.enuns.Status;
-
+import br.com.teste.todolist.modules.todo.mapper.TodoMapper;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -17,20 +18,18 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository todoRepository;
-
-    @Autowired
-    public TodoServiceImpl(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
+    private final TodoMapper todoMapper;
 
     @Transactional
     @Override
-    public Todo createTodo(Todo todo) {
-        todo.setUsuario(this.getLoggedUser());
-        return this.todoRepository.save(todo);
+    public TodoDTO createTodo(TodoDTO todoDTO) {
+        Todo todo = todoMapper.toEntity(todoDTO);
+        todo.setUsuario(getLoggedUser());
+        return todoMapper.toDto(todoRepository.save(todo));
     }
 
     @Override

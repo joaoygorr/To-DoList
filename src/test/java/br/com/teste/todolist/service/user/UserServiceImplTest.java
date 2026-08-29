@@ -3,7 +3,10 @@ package br.com.teste.todolist.service.user;
 import br.com.teste.todolist.exceptions.Exception401;
 import br.com.teste.todolist.infra.security.service.TokenService;
 import br.com.teste.todolist.modules.auth.User;
+import br.com.teste.todolist.modules.auth.UserMapper;
 import br.com.teste.todolist.modules.auth.UserServiceImpl;
+import br.com.teste.todolist.modules.auth.dtos.LoginDTO;
+import br.com.teste.todolist.modules.auth.dtos.UserDTO;
 import br.com.teste.todolist.record.login.ResponseRecord;
 import br.com.teste.todolist.modules.auth.UserRepository;
 
@@ -36,18 +39,20 @@ class UserServiceImplTest {
 //    @Mock
 //    private PasswordEncoder passwordEncoder;
 //
+//    @Mock
+//    private UserMapper userMapper;
+//
 //    @Autowired
 //    @InjectMocks
 //    private UserServiceImpl userService;
 //
-//    private User user;
+//    private UserDTO user;
 //
 //    @BeforeEach
 //    void setUp() {
 //        MockitoAnnotations.openMocks(this);
-//        userService = new UserServiceImpl(userRepository, tokenService, passwordEncoder);
-//
-//        user = new User(1L, "souza", "souza@gmail.com", "123456");
+//        userService = new UserServiceImpl(userRepository, tokenService, passwordEncoder, userMapper);
+//        user = new UserDTO("souza", "souza@gmail.com", "123456");
 //    }
 //
 //    @Test
@@ -89,7 +94,7 @@ class UserServiceImplTest {
 //        when(passwordEncoder.matches(user.getPassword(), user.getPassword())).thenReturn(true);
 //        when(tokenService.generateToken(user)).thenReturn("generatedToken");
 //
-//        ResponseRecord response = userService.login(user);
+//        LoginDTO response = userService.login(user);
 //
 //        assertNotNull(response);
 //        assertEquals("souza", response.name());

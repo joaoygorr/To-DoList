@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -31,13 +32,15 @@ public class Todo {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private LocalDate creationDate;
 
     @Column(nullable = false)
     private LocalDate deadLine;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_usuario_todo"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_usuario_todo"), nullable = false)
     private User usuario;
 
     public Todo(String title, String description, Status status, LocalDate deadLine) {

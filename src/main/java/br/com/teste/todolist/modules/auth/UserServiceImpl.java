@@ -6,7 +6,6 @@ import br.com.teste.todolist.exceptions.Exception409;
 import br.com.teste.todolist.infra.security.service.TokenService;
 import br.com.teste.todolist.modules.auth.dtos.LoginDTO;
 import br.com.teste.todolist.modules.auth.dtos.UserDTO;
-import br.com.teste.todolist.record.login.ResponseRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
